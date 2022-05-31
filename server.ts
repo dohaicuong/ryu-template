@@ -1,7 +1,6 @@
-const express = require('express')
-const { engine } = require('express-handlebars')
-
-const { PrismaClient } = require('@prisma/client')
+import express from 'express'
+import { engine } from 'express-handlebars'
+import { PrismaClient } from '@prisma/client'
 
 const app = express()
 const prisma = new PrismaClient()
@@ -12,6 +11,7 @@ app.set('views', './views')
 
 app.get('/', async (req, res) => {
   const users = await prisma.user.findMany()
+
   res.render('home', {
     layout: false,
     helpers: {
